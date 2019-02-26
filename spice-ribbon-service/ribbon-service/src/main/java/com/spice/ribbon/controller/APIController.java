@@ -32,8 +32,7 @@ public class APIController {
         // todo 参数判断
         // TODO 异步
         // todo 多参数
-        while(names.hasMoreElements());
-        {
+        while(names.hasMoreElements()) {
             String name = names.nextElement();
             String value = request.getParameter(name);
             params.append(name);
