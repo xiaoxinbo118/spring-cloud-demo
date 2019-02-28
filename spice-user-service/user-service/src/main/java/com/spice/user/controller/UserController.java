@@ -29,11 +29,19 @@ public class UserController {
 
     @RequestMapping("/getUserInfo")
     public UserEntity getUserInfo(@RequestParam long _uid) {
-        return userDao.getUserInfo(_uid);
+//        return userDao.getUserInfo(_uid);
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(_uid);
+        userEntity.setName("11");
+//        userEntity.setTeamId(100 / 0);
+//        throw new Exception("this is an error");
+        return userEntity;
     }
 
     @RequestMapping("/saveUserInfo")
     public boolean saveUserInfo(HttpServletRequest request, UserEntity userInfo) {
-        return userDao.saveUserInfo(userInfo);
+//        return userDao.saveUserInfo(userInfo);
+        return true;
     }
+
 }

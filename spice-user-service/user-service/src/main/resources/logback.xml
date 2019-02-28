@@ -1,0 +1,79 @@
+<configuration debug="true">
+    <property resource="config.properties"/>
+
+    <appender name="InfoFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${com.spice.user.log.home}/info/info.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${com.spice.user.log.home}/info/info-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>20MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <MaxHistory>10</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%level] %logger:%L x:\(%X\) - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ErrorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${com.spice.user.log.home}/error/error.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${com.spice.user.log.home}/error/error-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>20MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <MaxHistory>10</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%level] %logger:%L x:\(%X\) - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="MsgInfoFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${com.spice.user.log.home}/info/msginfo.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${com.spice.user.log.home}/info/msginfo-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>20MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <MaxHistory>10</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%level] %logger:%L x:\(%X\) - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="ErrorFile"/>
+        <appender-ref ref="InfoFile"/>
+    </root>
+
+    <logger name="MsgLogger" level="WARN">
+        <appender-ref ref="MsgInfoFile"/>
+        <appender-ref ref="ErrorFile"/>
+    </logger>
+</configuration>

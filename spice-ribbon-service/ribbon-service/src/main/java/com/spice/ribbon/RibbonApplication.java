@@ -2,6 +2,7 @@ package com.spice.ribbon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -11,7 +12,10 @@ import org.springframework.web.client.RestTemplate;
 /**
  * Created by sfht on 25/2/2019.
  */
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+        DataSourceAutoConfiguration.class
+})
+
 @EnableEurekaClient
 @EnableDiscoveryClient
 public class RibbonApplication {
