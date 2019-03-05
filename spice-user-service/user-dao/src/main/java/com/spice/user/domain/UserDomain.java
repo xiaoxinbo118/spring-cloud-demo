@@ -6,31 +6,50 @@ import java.util.Date;
 /**
  * Created by sfht on 4/3/2019.
  */
+// TODO 工具生成
 @Table(name = "`spice-user`.`user`")
 public class UserDomain {
+    private static final String COLUMN_FIELD_ID = "id";
+    private static final String COLUMN_FIELD_NAME = "name";
+    private static final String COLUMN_FIELD_TEAM_ID = "team_id";
+    private static final String COLUMN_FIELD_TELEPHONE = "telephone";
+    private static final String COLUMN_FIELD_PASSWORD = "password";
+    private static final String COLUMN_FIELD_CREATE_DATE = "create_date";
+    private static final String COLUMN_FIELD_UPDATE_DATE = "update_date";
+    private static final String COLUMN_FIELD_IS_DELETE = "is_delete";
+
+    public static final String COLUMN_CONDITION_ID = "id";
+    public static final String COLUMN_CONDITION_NAME = "name";
+    public static final String COLUMN_CONDITION_TEAM_ID = "teamId";
+    public static final String COLUMN_CONDITION_TELEPHONE = "telephone";
+    public static final String COLUMN_CONDITION_PASSWORD = "password";
+    public static final String COLUMN_CONDITION_CREATE_DATE = "createDate";
+    public static final String COLUMN_CONDITION_UPDATE_DATE = "updateDate";
+    public static final String COLUMN_CONDITION_IS_DELETE = "isDelete";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = UserDomain.COLUMN_FIELD_NAME)
     private String name;
 
-    @Column(name = "team_id")
+    @Column(name = UserDomain.COLUMN_FIELD_TEAM_ID)
     private Integer teamId;
 
-    @Column(name = "telephone")
+    @Column(name = UserDomain.COLUMN_FIELD_TELEPHONE)
     private String telephone;
 
-    @Column(name = "password")
+    @Column(name = COLUMN_FIELD_PASSWORD)
     private String password;
 
-    @Column(name = "create_date")
+    @Column(name = COLUMN_FIELD_CREATE_DATE)
     private Date createDate;
 
-    @Column(name = "update_date")
+    @Column(name = COLUMN_FIELD_UPDATE_DATE)
     private Date updateDate;
 
-    @Column(name = "is_delete")
+    @Column(name = COLUMN_FIELD_IS_DELETE)
     private Integer isDelete;
 
     public Long getId() {

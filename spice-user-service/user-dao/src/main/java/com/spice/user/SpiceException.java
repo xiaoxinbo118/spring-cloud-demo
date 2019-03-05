@@ -1,4 +1,4 @@
-package com.spice.user.result;
+package com.spice.user;
 
 /**
  * Created by sfht on 22/2/2019.

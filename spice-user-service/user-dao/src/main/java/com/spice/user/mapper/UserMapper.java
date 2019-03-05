@@ -9,7 +9,7 @@ import java.util.List;
 @org.apache.ibatis.annotations.Mapper
 public interface UserMapper extends Mapper<UserDomain> {
 
-    List<UserDomain> login(@Param("telephone") String telephone,
-                           @Param("password") String password,
-                           @Param("is_delete") Integer is_delete);
+//    UserDomain selectByTelAndPsd(@Param("telephone") String telephone,
+//                           @Param("password") String password,
+//                           @Param("is_delete") Integer is_delete);
 }

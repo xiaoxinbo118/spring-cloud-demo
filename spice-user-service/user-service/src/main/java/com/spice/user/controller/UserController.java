@@ -1,7 +1,7 @@
 package com.spice.user.controller;
 
 import com.spice.user.entity.UserEntity;
-import com.spice.user.result.SpiceException;
+import com.spice.user.SpiceException;
 import com.spice.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,4 +39,8 @@ public class UserController {
         return true;
     }
 
+    @RequestMapping("/login")
+    public UserEntity login(@RequestParam String telephone, @RequestParam String password) throws SpiceException {
+        return userService.login(telephone, password);
+    }
 }

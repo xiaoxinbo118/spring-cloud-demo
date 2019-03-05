@@ -1,5 +1,7 @@
 package com.spice.user.result;
 
+import com.spice.user.SpiceException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -18,6 +20,15 @@ public class ExceptionResponseAdvice {
         ExceptionEntity response = new ExceptionEntity();
         response.setCode(-100);
         response.setMsg("服务器未知异常");
+        return response;
+    }
+
+    @ExceptionHandler({MissingServletRequestParameterException.class})
+    public ExceptionEntity paramExceptionHandler(MissingServletRequestParameterException e) {
+        // TODO 日志输出
+        ExceptionEntity response = new ExceptionEntity();
+        response.setCode(-104);
+        response.setMsg("参数错误");
         return response;
     }
 

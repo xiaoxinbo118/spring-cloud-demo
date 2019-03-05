@@ -2,8 +2,8 @@ package com.spice.user.service;
 
 import com.spice.user.domain.UserDomain;
 import com.spice.user.entity.UserEntity;
-import com.spice.user.mapper.UserMapper;
-import com.spice.user.result.SpiceException;
+import com.spice.user.dao.UserDao;
+import com.spice.user.SpiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,18 +13,30 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
     @Autowired
-    UserMapper userMapper;
+    UserDao userDao;
 
     public UserEntity getUserInfo(long id) throws SpiceException {
-        UserDomain userDomain = userMapper.selectByPrimaryKey(new Long(id));
+        return this.transferEntity(userDao.getUserInfo(id));
+    }
 
-        if (userDomain == null) {
-            throw new SpiceException(10001, "无用户信息");
+    public UserEntity login(String telephone, String password) throws SpiceException {
+        return this.transferEntity(userDao.selectByTelAndPsd(telephone, password));
+    }
+
+    private UserEntity transferEntity(UserDomain domain) {
+        UserEntity entity = new UserEntity();
+
+        entity.setId(domain.getId());
+        entity.setTeamId(domain.getTeamId());
+
+        if (domain.getTelephone() != null) {
+            entity.setTelephone(domain.getTelephone());
         }
 
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(id);
-        userEntity.setName(userDomain.getName());
-        return userEntity;
+        if (domain.getName() != null) {
+            entity.setName(domain.getName());
+        }
+
+        return entity;
     }
 }
