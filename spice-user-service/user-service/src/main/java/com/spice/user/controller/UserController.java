@@ -1,7 +1,8 @@
 package com.spice.user.controller;
 
-import com.spice.user.dao.UserDao;
 import com.spice.user.entity.UserEntity;
+import com.spice.user.result.SpiceException;
+import com.spice.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class UserController {
     @Autowired
-    UserDao userDao;
+    UserService userService;
 
     @Value("${server.port}")
     String port;
@@ -28,14 +29,8 @@ public class UserController {
     }
 
     @RequestMapping("/getUserInfo")
-    public UserEntity getUserInfo(@RequestParam long _uid) {
-//        return userDao.getUserInfo(_uid);
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(_uid);
-        userEntity.setName("11");
-//        userEntity.setTeamId(100 / 0);
-//        throw new Exception("this is an error");
-        return userEntity;
+    public UserEntity getUserInfo(@RequestParam long _uid) throws SpiceException {
+        return userService.getUserInfo(_uid);
     }
 
     @RequestMapping("/saveUserInfo")

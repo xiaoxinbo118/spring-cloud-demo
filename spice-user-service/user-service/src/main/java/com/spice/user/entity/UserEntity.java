@@ -7,6 +7,7 @@ public class UserEntity {
     private long id;
     private long teamId;
     private String name;
+    private String telephone;
 
     public long getId() {
         return id;
@@ -30,5 +31,13 @@ public class UserEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }
