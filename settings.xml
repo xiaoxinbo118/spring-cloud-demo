@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<settings>
+	<mirrors>
+		<mirror>     
+		    <id>spice-nexus-releases</id>     
+		    <mirrorOf>*</mirrorOf>     
+		    <url>http://localhost:8081/repository/maven-public/</url>     
+		</mirror>    
+		<mirror>     
+		    <id>spice-nexus-snapshots</id>     
+		    <mirrorOf>*</mirrorOf>     
+		    <url>http://localhost:8081/nexus/content/groups/public-snapshots</url>     
+		</mirror>
+	</mirrors>   
+	<!-- ======================================================================== -->
+	<!-- Accounts for SCM ONLY -->
+	<!-- ======================================================================== -->
+	<localRepository>${user.home}/.m2/repository</localRepository>
+	<servers>
+		<server>
+			<id>>spice-nexus-releases</id>
+			<username>admin</username>
+			<password>admin123</password>
+		</server>
+		<server>
+			<id>spice-nexus-snapshots</id>
+			<username>admin</username>
+			<password>admin123</password>
+		</server>
+	</servers>
+	<!-- ======================================================================== -->
+	<!-- Profiles -->
+	<!-- ======================================================================== -->
+	<profiles>
+		<profile>
+			<id>spice</id>
+			<repositories>
+				<repository>  
+				  <id>spice-nexus-releases</id>  
+				  <url>http://nexus-releases</url>  
+				  <releases><enabled>true</enabled></releases>  
+				  <snapshots><enabled>true</enabled></snapshots>
+				</repository>
+				<repository>  
+				  <id>spice-nexus-snapshots</id>  
+				  <url>http://nexus-snapshots</url>  
+				  <releases><enabled>true</enabled></releases>  
+				   <snapshots><enabled>true</enabled></snapshots>  
+				</repository>
+			</repositories>
+			<!-- ======================================================================== -->
+			<!-- Repositories for maven plugins -->
+			<!-- ======================================================================== -->
+			<pluginRepositories>
+				<pluginRepository>  
+				    <id>spice-nexus-releases</id>  
+				    <url>http://nexus-releases</url>  
+				    <releases><enabled>true</enabled></releases>  
+				    <snapshots><enabled>true</enabled></snapshots>  
+				</pluginRepository>  
+				<pluginRepository>  
+				    <id>spice-nexus-snapshots</id>  
+				    <url>http://nexus-snapshots</url>  
+				    <releases><enabled>true</enabled></releases>  
+				    <snapshots><enabled>true</enabled></snapshots>  
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
+	<activeProfiles>
+		<activeProfile>spice</activeProfile>
+	</activeProfiles>
+	<updatePolicy>always</updatePolicy> 
+</settings>
